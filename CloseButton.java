@@ -76,8 +76,12 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
 		// TODO Auto-generated method stub
 		
 	}
-
-
+ 
+	@Override
+	public void OnWindowDragged(int movementX, int movementY){
+		positionX -= movementX;
+		positionY -= movementY;
+	}
 
 
 }

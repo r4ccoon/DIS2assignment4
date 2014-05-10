@@ -163,4 +163,9 @@ public class Widget {
             }
         }
 	}
+
+	public void OnWindowDragged(int deltaX, int deltaY) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -138,6 +138,11 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
 			mouseMovement.setY(e.position.getY());
 			
 			win.OnWindowManagerOnMouseDrag(deltaX, deltaY);
+			
+			for(int i = 0; i < widgets.size(); i++){
+				Widget w = widgets.get(i);
+				w.OnWindowDragged(deltaX, deltaY);
+			}
     	}
 	} 
 }

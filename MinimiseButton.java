@@ -13,7 +13,7 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  *
  * @author rohan
  */
-public class MinimiseButton extends Widget implements MouseHandlerDelegate{
+public class MinimiseButton extends Widget implements MouseHandlerDelegate {
 
     public MinimiseButton(int width, int height) {
         this.width = width;
@@ -78,7 +78,12 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate{
 	public void OnMouseDragged(Widget widget, EventArgs e) {
 		// TODO Auto-generated method stub
 		
+	} 
+	
+	@Override
+	public void OnWindowDragged(int movementX, int movementY){
+		positionX -= movementX;
+		positionY -= movementY;
 	}
-
 
 }
