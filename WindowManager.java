@@ -75,16 +75,7 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
 
         // the widgets in the "widgets" are drawn using this call
         super.HandlePaint(ges);
-    }
-
-    // handle mouse drag
-    public void onMouseDrag( ){
-        win.OnWindowManagerOnMouseDrag();
-    }
-
-    public void onMouseRelease( ){
-        win.OnWindowManagerOnMouseRelease();
-    }
+    } 
 
     @Override
     public void OnClick(Widget widget, EventArgs e) { 
@@ -145,6 +136,8 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
  
 			mouseMovement.setX(e.position.getX());
 			mouseMovement.setY(e.position.getY());
+			
+			win.OnWindowManagerOnMouseDrag(deltaX, deltaY);
     	}
 	} 
 }

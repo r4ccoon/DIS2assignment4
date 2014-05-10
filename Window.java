@@ -89,9 +89,9 @@ public class Window extends Widget {
         ges.drawLine(origX, origY, destX, destY);
     }
 
-    public void OnWindowManagerOnMouseDrag() {
-        // TODO Auto-generated method stub
-
+    public void OnWindowManagerOnMouseDrag(int deltaX, int deltaY) {
+    	positionX -= deltaX;
+		positionY -= deltaY;  
     }
 
     public void OnWindowManagerOnMouseRelease() {
