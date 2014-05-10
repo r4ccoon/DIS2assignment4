@@ -5,11 +5,12 @@ public class Main {
 	
 	public static void main(String[] args) {
 		// desktop
-		Desktop manager = new Desktop();
+		Desktop desktop = new Desktop();
 		
+		// example create window inside the desktop
+		desktop.CreateWindow("main window", 640, 480);
 		
-		
-		//WindowSystem win = manager.CreateWindow("main window", width, height); 
-	}
-
+		// example create window inside the desktop 
+		desktop.CreateWindow("second window", new Vector2(400, 200), 100, 200);  
+	} 
 }

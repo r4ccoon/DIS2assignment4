@@ -1,32 +1,73 @@
 import java.awt.Color;
 
-import de.rwth.hci.Graphics.GraphicsEventSystem;
-
 /**
  * the window class
  * 
  * @author rpl
  *
  */
-public class Window extends GraphicsEventSystem{
+public class Window extends Widget {
+	WindowManager manager;
+ 
+	public Window(int width, int height) {  
+		this.width = width;
+		this.height = height;
 
-	int width;
-	int height;
-	
-	public Window(int width, int height) {
-		super(width, height); 
+		this.positionX = 0;
+		this.positionY = 0;		
+
+		manager = new WindowManager();
+	}
+ 
+	public Window(int width, int height, int posX, int posY){ 
+		this.positionX = posX;
+		this.positionY = posY; 
 		
 		this.width = width;
-		this.height = height;		
+		this.height = height; 
+	}
+
+	public Window(Vector2 v, int width, int height) { 
+		this.positionX = v.getX();
+		this.positionY = v.getY();
+		 
+		this.width = width;
+		this.height = height; 
+	} 
+	
+	public void SetManager(WindowManager mgr){
+		manager = mgr;		
+		mgr.Initiate(this); 
 	}
 	
-	@Override
-	protected void handlePaint() { 
-		Color color = new Color(255, 0, 0); 
-		setColor(color); 
-		drawLine(0.2f, 0.3f, 0.8f, 0.7f); 
-	}
+	protected void handlePaint(Desktop ges) {   
+		drawWindow(ges); 
+
+		manager.drawTitleBar(ges);
 		
+		ges.requestRepaint();
+	}
+
+	/**
+	 * draw square window
+	 */
+	private void drawWindow(Desktop ges){
+		ges.setColor(new Color(150,150,150));  
+		
+		//draw top
+		//ges.drawLine(positionX - 1, positionY - 1, positionX + width + 1, positionY - 1);
+		//draw left
+		ges.drawLine(positionX - 1, positionY - 1, positionX - 1, positionY + 1 + height);
+		//draw right
+		ges.drawLine(positionX + 1 + width, positionY - 1, positionX + width + 1, positionY + height + 1);
+		//draw bottom
+		ges.drawLine(positionX, positionY + height + 1, positionX + width, positionY + height + 1);
+
+		// fill bg color
+		ges.setColor(new Color(232,232,232)); 
+		ges.fillRect(positionX, positionY, positionX + width, positionY + height);
+	}
+
 	/**
 	 * 
 	 * @param originX
@@ -34,15 +75,25 @@ public class Window extends GraphicsEventSystem{
 	 * @param destinationX
 	 * @param destinationY
 	 */
-	protected void drawLine(float originX, float originY, float destinationX, float destinationY){
+	protected void drawLine(Desktop ges, float originX, float originY, float destinationX, float destinationY){
 		int origX = Helper.Convert(SizeType.width, originX, width, height);
 		int origY = Helper.Convert(SizeType.height, originY, width, height);
-		
+
 		int destX = Helper.Convert(SizeType.width, destinationX, width, height);
 		int destY = Helper.Convert(SizeType.height, destinationY, width, height);
-		
-		this.drawLine(origX, origY, destX, destY);
+
+		ges.drawLine(origX, origY, destX, destY);
 	}
-	
-	
+
+	public void OnWindowManagerOnMouseDrag() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void OnWindowManagerOnMouseRelease() {
+		// TODO Auto-generated method stub
+
+	}
+
+
 }
