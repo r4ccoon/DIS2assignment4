@@ -47,7 +47,7 @@ public class Window extends Widget {
     protected void handlePaint(Desktop ges) {
         drawWindow(ges);
 
-        manager.drawTitleBar(ges);
+        manager.HandlePaint(ges);
 
         ges.requestRepaint();
     }
@@ -99,10 +99,12 @@ public class Window extends Widget {
 
     }
 
-    public void handleMouseClicked(EventArgs eventArgs) {
-        // TODO Auto-generated method stub
+    @Override
+    public void handleMouseClicked(EventArgs e){
+        super.handleMouseClicked(e);
 
+        if(manager != null)
+            manager.handleMouseClicked(e);
     }
-
 
 }

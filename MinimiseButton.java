@@ -1,6 +1,8 @@
 
 import java.awt.Color;
 
+import de.rwth.hci.Graphics.GraphicsEventSystem;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,15 +13,14 @@ import java.awt.Color;
  *
  * @author rohan
  */
-public class MinimiseButton extends Widget{
+public class MinimiseButton extends Widget implements MouseHandlerDelegate{
 
     public MinimiseButton(int width, int height) {
         this.width = width;
         this.height = height;
 
         this.positionX = 0;
-        this.positionY = 0;
-
+        this.positionY = 0; 
     }
 
     public MinimiseButton(int width, int height, int posX, int posY){
@@ -28,6 +29,8 @@ public class MinimiseButton extends Widget{
 
         this.width = width;
         this.height = height;
+        
+        setMouseClickDelegate(this);
     }
 
     public MinimiseButton(Vector2 v, int width, int height) {
@@ -38,13 +41,21 @@ public class MinimiseButton extends Widget{
         this.height = height;
     }
 
-    public void drawButton(Desktop ges){
+    @Override
+    public void HandlePaint(GraphicsEventSystem ges){
+    	super.HandlePaint(ges);
+    	
         ges.setColor(Color.YELLOW) ;
         ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
         ges.setColor(Color.BLACK) ;
         ges.drawString("-", (this.positionX + this.width) / Constants.to_get_midpoint, 
         		(this.positionY + this.height) / Constants.to_get_midpoint ); 
     }
+
+	@Override
+	public void OnClick(Object o, EventArgs e) {
+		System.out.println("on minimiize btn");
+	}
 
 
 }

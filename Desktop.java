@@ -2,8 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.rwth.hci.Graphics.GraphicsEventSystem;
-
-
+ 
 /**
  * factory class for managing windows, some custom method that extends GES
  *

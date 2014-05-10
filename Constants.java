@@ -8,4 +8,5 @@ public class Constants {
     static final int minimise_button_height = 10 ;
     static final int spacing_between_buttons = 2 ;
     static final int to_get_midpoint = 2 ;
-}
+	public static final int OS_title_bar_height = 25;
+} 

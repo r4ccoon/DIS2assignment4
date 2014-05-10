@@ -1,6 +1,8 @@
 
 import java.awt.Color;
 
+import de.rwth.hci.Graphics.GraphicsEventSystem;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,18 +13,7 @@ import java.awt.Color;
  *
  * @author rohan
  */
-public class CloseButton extends Widget {
-
-
-
-    public CloseButton(int width, int height) {
-        this.width = width;
-        this.height = height;
-
-        this.positionX = 0;
-        this.positionY = 0;
-
-    }
+public class CloseButton extends Widget implements MouseHandlerDelegate { 
 
     public CloseButton(int width, int height, int posX, int posY){
         this.positionX = posX;
@@ -30,25 +21,18 @@ public class CloseButton extends Widget {
 
         this.width = width;
         this.height = height;
-    }
+        
+        this.setMouseClickDelegate(this);
+    }  
 
-    public CloseButton(Vector2 v, int width, int height) {
-        this.positionX = v.getX();
-        this.positionY = v.getY();
-
-        this.width = width;
-        this.height = height;
-    }
-
-
-
-    public void drawButton(Desktop ges){
-
+    @Override
+    public void HandlePaint(GraphicsEventSystem ges){
+    	super.HandlePaint(ges);
+    	
         ges.setColor(Color.RED) ;
         ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
         ges.setColor(Color.BLACK) ;
-        ges.drawString("X", (this.positionX + this.width) / Constants.spacing_between_buttons, (this.positionY +this.height)/Constants.to_get_midpoint );
-
+        ges.drawString("X", (this.positionX + this.width) / Constants.spacing_between_buttons, (this.positionY +this.height)/Constants.to_get_midpoint ); 
     }
 
     public void OnWindowManagerOnMouseDrag() {
@@ -60,6 +44,11 @@ public class CloseButton extends Widget {
         // TODO Auto-generated method stub
 
     }
+
+	@Override
+	public void OnClick(Object o, EventArgs e) {
+		System.out.println("onclose button");	
+	}
 
 
 
