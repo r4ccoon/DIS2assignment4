@@ -30,7 +30,8 @@ public class Desktop extends GraphicsEventSystem{
 	public Window CreateWindow(String title, int width, int height){
 		// create window, push it down a bit because the title bar height
 		Window win = new Window(
-				new Vector2(0, Constants.title_bar_height), 
+                                title,
+				new Vector2( 0, Constants.title_bar_height), 
 				width, 
 				height);
 
@@ -46,6 +47,7 @@ public class Desktop extends GraphicsEventSystem{
 	public Window CreateWindow(String title, Vector2 startPosition, int width, int height){
 		// create window, push it down a bit because the title bar height
 		Window win = new Window(
+                                title,
 				new Vector2(startPosition.x, startPosition.y + Constants.title_bar_height), 
 				width, 
 				height); 
