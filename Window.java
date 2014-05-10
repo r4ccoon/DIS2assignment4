@@ -95,5 +95,10 @@ public class Window extends Widget {
 
 	}
 
+	public void handleMouseClicked(EventArgs eventArgs) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
