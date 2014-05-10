@@ -9,9 +9,9 @@ public class Widget {
     protected int height;
     protected int positionX;
     protected int positionY;
-    protected String tittle ;
-    private boolean isFocused;
-	private MouseHandlerDelegate mouseClickDelegate;
+    protected String tittle;
+    protected boolean isFocused;
+    protected MouseHandlerDelegate mouseClickDelegate;
 	
 	public void setMouseClickDelegate(MouseHandlerDelegate mouseClickDelegate) {
 		this.mouseClickDelegate = mouseClickDelegate;
@@ -20,7 +20,7 @@ public class Widget {
 	List<Widget> widgets;
 	
 	public Widget(){
-		isFocused = true;
+		isFocused = false;
 		
 		widgets = new LinkedList<Widget>(); 
 	}
@@ -85,8 +85,8 @@ public class Widget {
         return false;
     }
     
-    public void handleMouseClicked(EventArgs e){
-        if(isFocused){
+    public void handleMouseClicked(EventArgs e){ 
+        {
         	for(int i = 0; i < widgets.size(); i++){
         		Widget w = widgets.get(i);
         		w.handleMouseClicked(e);
@@ -99,5 +99,68 @@ public class Widget {
                 }
             }
         }
-    }
+    } 
+
+	public void handleMousePressed(EventArgs e) {
+		for(int i = 0; i < widgets.size(); i++){
+    		Widget w = widgets.get(i);
+    		w.handleMousePressed(e);
+    	}
+
+        if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) {
+        	isFocused = true;
+        	
+            if (mouseClickDelegate != null) {
+                // call callback
+                mouseClickDelegate.OnMousePressed(this, e);
+            }
+        }
+	}
+
+	public void handleMouseReleased(EventArgs e) {
+		for(int i = 0; i < widgets.size(); i++){
+    		Widget w = widgets.get(i);
+    		w.handleMouseReleased(e);
+    	}
+
+        //if(checkCollision(e.getPosition().getX(), e.getPosition().getY()))
+		if(isFocused)
+        {
+            if (mouseClickDelegate != null) {
+                // call callback
+                mouseClickDelegate.OnMouseReleased(this, e);
+            }
+        } 
+	}
+
+	public void handleMouseMoved(EventArgs e) {
+		for(int i = 0; i < widgets.size(); i++){
+    		Widget w = widgets.get(i);
+    		w.handleMouseMoved(e);
+    	}
+
+        //if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) 
+        {
+            if (mouseClickDelegate != null) {
+                // call callback
+                mouseClickDelegate.OnMouseMoved(this, e);
+            }
+        }
+	}
+
+	public void handleMouseDragged(EventArgs e) {
+		for(int i = 0; i < widgets.size(); i++){
+    		Widget w = widgets.get(i);
+    		w.handleMouseDragged(e);
+    	}
+
+        //if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) 
+		if(isFocused)
+		{
+            if (mouseClickDelegate != null) {
+                // call callback
+                mouseClickDelegate.OnMouseDragged(this, e);
+            }
+        }
+	}
 }

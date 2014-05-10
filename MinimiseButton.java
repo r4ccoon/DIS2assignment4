@@ -52,8 +52,32 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate{
     }
 
 	@Override
-	public void OnClick(Object o, EventArgs e) {
+	public void OnClick(Widget o, EventArgs e) {
 		System.out.println("on minimiize btn");
+	}
+
+	@Override
+	public void OnMousePressed(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnMouseReleased(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnMouseMoved(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnMouseDragged(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

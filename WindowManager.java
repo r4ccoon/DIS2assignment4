@@ -1,6 +1,4 @@
 import java.awt.Color;
-import java.util.List;
-
 import de.rwth.hci.Graphics.GraphicsEventSystem;
 
 /**
@@ -14,13 +12,19 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
     CloseButton close ;
     MinimiseButton min ;
 
+    Vector2 mouseMovement;
+    
     public WindowManager(){
     	this.setMouseClickDelegate(this);
     }
 
-    public void Initiate(Window win){
+    public void Initiate(Window window){
+    	win = window;
+    	
         positionX = win.getPositionX();
         positionY = win.getPositionY() - Constants.title_bar_height;
+         
+    	mouseMovement = new Vector2(positionX, positionY);
 
         width = win.width;
         height = Constants.title_bar_height;
@@ -36,6 +40,10 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
         		close.getPositionX() +  Constants.spacing_between_buttons + close.getWidth() , 
         		close.getPositionY()  
         ) ;
+        
+        this.setMouseClickDelegate(this);
+        close.setMouseClickDelegate(this);
+        min.setMouseClickDelegate(this);
         
         this.AddWidget(close);
         this.AddWidget(min);
@@ -79,10 +87,64 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
     }
 
     @Override
-    public void OnClick(Object o, EventArgs e) { 
-	System.out.println("on title bar click");
+    public void OnClick(Widget widget, EventArgs e) { 
+    	System.out.println("on title bar click");
+    	
+		if(widget.getClass() == CloseButton.class){
+			win.Close();
+		} 
+		else if(widget.getClass() == MinimiseButton.class){
+			win.Minimise();
+		}
     }
 
+	@Override
+	public void OnMousePressed(Widget widget, EventArgs e) {   
+    	if(widget.getClass() == WindowManager.class)
+    	{
+    		isFocused = true;
+    		
+			mouseMovement.setX(e.position.getX());
+			mouseMovement.setY(e.position.getY());
+			
+			System.out.println("title bar pressed");
+    	}
+	}
 
+	@Override
+	public void OnMouseReleased(Widget widget, EventArgs e) {		
+    	if(widget.getClass() == WindowManager.class)
+    	{ 
+        	System.out.println("OnMouseReleased");
+        	
+			mouseMovement.setX(e.position.getX());
+			mouseMovement.setY(e.position.getY());
+			
+			System.out.println("title bar Released");
+			
+			isFocused = false;
+		}  
+	}
 
+	@Override
+	public void OnMouseMoved(Widget widget, EventArgs e) { 
+		
+	}
+
+	@Override
+	public void OnMouseDragged(Widget widget, EventArgs e) { 
+    	if(widget.getClass() == WindowManager.class && isFocused)
+    	{ 
+        	System.out.println("OnMouseDragged");
+        	
+			int deltaX = mouseMovement.getX() - e.position.getX();
+			int deltaY = mouseMovement.getY() - e.position.getY();
+			
+			positionX -= deltaX;
+			positionY -= deltaY;  
+ 
+			mouseMovement.setX(e.position.getX());
+			mouseMovement.setY(e.position.getY());
+    	}
+	} 
 }

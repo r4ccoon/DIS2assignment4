@@ -20,9 +20,7 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
         this.positionY = posY;
 
         this.width = width;
-        this.height = height;
-        
-        this.setMouseClickDelegate(this);
+        this.height = height;  
     }  
 
     @Override
@@ -35,6 +33,11 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
         super.HandlePaint(ges);
     }
 
+    @Override
+    public boolean checkCollision(int x, int y){
+       return super.checkCollision(x, y);
+    }
+    
     public void OnWindowManagerOnMouseDrag() {
         // TODO Auto-generated method stub
 
@@ -46,8 +49,32 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
     }
 
 	@Override
-	public void OnClick(Object o, EventArgs e) {
+	public void OnClick(Widget o, EventArgs e) {
 		System.out.println("onclose button");	
+	}
+
+	@Override
+	public void OnMousePressed(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnMouseReleased(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnMouseMoved(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void OnMouseDragged(Widget widget, EventArgs e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

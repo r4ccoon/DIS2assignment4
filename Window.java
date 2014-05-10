@@ -107,4 +107,49 @@ public class Window extends Widget {
             manager.handleMouseClicked(e);
     }
 
+    @Override
+    public void handleMousePressed(EventArgs e){
+        super.handleMousePressed(e);
+
+        if(manager != null)
+            manager.handleMousePressed(e);
+    }
+
+    @Override
+    public void handleMouseReleased(EventArgs e){
+        super.handleMouseReleased(e);
+
+        if(manager != null)
+            manager.handleMouseReleased(e);
+    }
+    
+    @Override
+    public void handleMouseMoved(EventArgs e){
+        super.handleMouseMoved(e);
+
+        if(manager != null)
+            manager.handleMouseMoved(e);
+    }
+    
+    @Override
+    public void handleMouseDragged(EventArgs e){
+        super.handleMouseDragged(e);
+
+        if(manager != null)
+            manager.handleMouseDragged(e);
+    }
+
+
+    /**
+     * close the window
+     */
+	public void Close() {
+		System.out.println("close the window");
+	}
+
+	public void Minimise() {
+		System.out.println("minimize the window");
+		
+	}
+
 }

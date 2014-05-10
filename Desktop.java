@@ -85,5 +85,48 @@ public class Desktop extends GraphicsEventSystem{
             win.handleMouseClicked(new EventArgs(x, y));
         }
     }
+    
 
+    @Override
+    public void handleMousePressed(int x, int y) {
+        super.handleMousePressed(x, y);
+
+        for (int i = 0; i < windows.size(); i++) { 
+            Window win = windows.get(i);
+            win.handleMousePressed(new EventArgs(x, y));
+        }
+    }
+    
+    @Override
+    public void handleMouseReleased(int x, int y) {
+        super.handleMouseReleased(x, y);
+
+        for (int i = 0; i < windows.size(); i++) {
+            Window win = windows.get(i);
+            win.handleMouseReleased(new EventArgs(x, y));
+        }
+    }
+    
+    @Override
+    public void handleMouseMoved(int x, int y) {
+        super.handleMouseMoved(x, y);
+
+        for (int i = 0; i < windows.size(); i++) {
+            Window win = windows.get(i);
+            win.handleMouseMoved(new EventArgs(x, y));
+        }
+    }
+
+    
+    @Override
+    public void handleMouseDragged(int x, int y) {
+        super.handleMouseDragged(x, y);
+
+        for (int i = 0; i < windows.size(); i++) {
+            Window win = windows.get(i);
+            win.handleMouseDragged(new EventArgs(x, y));
+        }
+        
+        this.requestRepaint();
+    }  
 }
