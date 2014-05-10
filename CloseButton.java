@@ -12,56 +12,56 @@ import java.awt.Color;
  * @author rohan
  */
 public class CloseButton extends Widget {
-    
-    
 
-	public CloseButton(int width, int height) {  
-		this.width = width;
-		this.height = height;
 
-		this.positionX = 0;
-		this.positionY = 0;		
 
-	}
- 
-	public CloseButton(int width, int height, int posX, int posY){ 
-		this.positionX = posX;
-		this.positionY = posY; 
-		
-		this.width = width;
-		this.height = height; 
-	}
+    public CloseButton(int width, int height) {
+        this.width = width;
+        this.height = height;
 
-	public CloseButton(Vector2 v, int width, int height) { 
-		this.positionX = v.getX();
-		this.positionY = v.getY();
-		 
-		this.width = width;
-		this.height = height; 
-	} 
-	
-	
+        this.positionX = 0;
+        this.positionY = 0;
 
-        public void drawButton(Desktop ges){
+    }
 
-            ges.setColor(Color.RED) ; 
-	    ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
-            ges.setColor(Color.BLACK) ; 
-            ges.drawString("X", (this.positionX + this.width) /Constants.constant_to_get_midpoint, (this.positionY +this.height)/Constants.constant_to_get_midpoint );
-            
-                }
-        
-	public void OnWindowManagerOnMouseDrag() {
-		// TODO Auto-generated method stub
+    public CloseButton(int width, int height, int posX, int posY){
+        this.positionX = posX;
+        this.positionY = posY;
 
-	}
+        this.width = width;
+        this.height = height;
+    }
 
-	public void OnWindowManagerOnMouseRelease() {
-		// TODO Auto-generated method stub
+    public CloseButton(Vector2 v, int width, int height) {
+        this.positionX = v.getX();
+        this.positionY = v.getY();
 
-	}
-        
-        
+        this.width = width;
+        this.height = height;
+    }
 
-    
+
+
+    public void drawButton(Desktop ges){
+
+        ges.setColor(Color.RED) ;
+        ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
+        ges.setColor(Color.BLACK) ;
+        ges.drawString("X", (this.positionX + this.width) /Constants.constant_to_get_midpoint, (this.positionY +this.height)/Constants.constant_to_get_midpoint );
+
+    }
+
+    public void OnWindowManagerOnMouseDrag() {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void OnWindowManagerOnMouseRelease() {
+        // TODO Auto-generated method stub
+
+    }
+
+
+
+
 }
