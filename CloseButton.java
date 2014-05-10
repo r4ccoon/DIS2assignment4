@@ -47,8 +47,13 @@ public class CloseButton extends Widget {
         ges.setColor(Color.RED) ;
         ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
         ges.setColor(Color.BLACK) ;
-        ges.drawString("X", (this.positionX + this.width) / Constants.spacing_between_buttons, (this.positionY +this.height)/Constants.to_get_midpoint );
+       // ges.drawString("x", ( this.positionX + this.width ) / 2 , this.positionY +this.height);
 
+
+       ges.drawString("X", this.positionX, this.positionY+ this.height);
+
+        
+        //ges.drawLine(this.positionX, this.positionX, positionX + this.width - 1 , this.positionY + this.height - 1);
     }
 
     public void OnWindowManagerOnMouseDrag() {

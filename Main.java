@@ -20,11 +20,6 @@ public class Main {
 
         // example create window inside the desktop
         desktop.CreateWindow("second window", new Vector2(400, 200), 100, 200);
-
-        //Desktop desktop1 = new Desktop();
-        //desktop1.CreateWindow("main window", 640, 480);
-
-        //desktop1.CreateWindow("second window", new Vector2(400, 200), 100, 200);
         
     }
 });

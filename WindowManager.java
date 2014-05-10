@@ -24,14 +24,14 @@ public class WindowManager extends Widget{
 
         close = new CloseButton(Constants.close_button_width ,
         		Constants.close_button_height , 
-        		positionX + Constants.close_button_width +  Constants.spacing_between_buttons  , 
-        		positionY + Constants.close_button_width + Constants.spacing_between_buttons
+        		positionX +   Constants.spacing_between_buttons  , 
+        		positionY +   Constants.spacing_between_buttons
         );
         
         min = new MinimiseButton( Constants.minimise_button_height ,
         		Constants.minimise_button_width , 
-        		close.getPositionX() + Constants.minimise_button_width + Constants.spacing_between_buttons , 
-        		close.getPositionY() + Constants.minimise_button_height + Constants.spacing_between_buttons  
+        		close.getPositionX() +  Constants.spacing_between_buttons + close.getWidth() , 
+        		close.getPositionY()  
         ) ;
     }
 
@@ -53,7 +53,7 @@ public class WindowManager extends Widget{
         ges.fillRect(positionX, positionY, positionX + width, positionY + height);
  
         //add decorator ( close + minimise buttons + tittle)
-        //ges.drawString(win.getTittle(), ( positionX + width ) / Constants.to_get_midpoint,( positionY + height ) / Constants.spacing_between_buttons );
+       // ges.drawString(win.getTittle(),  positionX , positionY  );
         
         close.drawButton(ges);
         min.drawButton(ges);
