@@ -16,9 +16,7 @@ public class Window extends Widget {
         this.positionX = 0;
         this.positionY = 0;
 
-        this.tittle = title ;
-
-        manager = new WindowManager();
+        this.tittle = title ; 
     }
 
     public Window( String title , int width, int height, int posX, int posY){
@@ -71,10 +69,7 @@ public class Window extends Widget {
 
         // fill bg color
         ges.setColor(new Color(232,232,232));
-        ges.fillRect(positionX, positionY, positionX + width, positionY + height);
-
-
-
+        ges.fillRect(positionX, positionY, positionX + width, positionY + height); 
     }
 
     /**

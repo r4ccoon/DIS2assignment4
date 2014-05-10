@@ -22,8 +22,17 @@ public class WindowManager extends Widget{
         width = win.width;
         height = Constants.title_bar_height;
 
-        close = new CloseButton(Constants.close_button_width ,Constants.close_button_height , positionX + Constants.close_button_width +  Constants.constant_spacing_between_buttons  , positionY + Constants.close_button_width + Constants.constant_spacing_between_buttons );
-        min = new MinimiseButton( Constants.minimise_button_height ,Constants.minimise_button_width , close.getPositionX() + Constants.minimise_button_width + Constants.constant_spacing_between_buttons , close.getPositionY() + Constants.minimise_button_height + Constants.constant_spacing_between_buttons  ) ;
+        close = new CloseButton(Constants.close_button_width ,
+        		Constants.close_button_height , 
+        		positionX + Constants.close_button_width +  Constants.spacing_between_buttons  , 
+        		positionY + Constants.close_button_width + Constants.spacing_between_buttons
+        );
+        
+        min = new MinimiseButton( Constants.minimise_button_height ,
+        		Constants.minimise_button_width , 
+        		close.getPositionX() + Constants.minimise_button_width + Constants.spacing_between_buttons , 
+        		close.getPositionY() + Constants.minimise_button_height + Constants.spacing_between_buttons  
+        ) ;
     }
 
     //draw title bar
@@ -42,10 +51,10 @@ public class WindowManager extends Widget{
         // fill bg color
         ges.setColor(new Color(138,226,237));
         ges.fillRect(positionX, positionY, positionX + width, positionY + height);
-
-
+ 
         //add decorator ( close + minimise buttons + tittle)
-        ges.drawString(win.tittle, ( positionX + width ) / Constants.constant_to_get_midpoint,( positionY + height ) / Constants.constant_to_get_midpoint );
+        ges.drawString(win.getTittle(), ( positionX + width ) / Constants.to_get_midpoint,( positionY + height ) / Constants.spacing_between_buttons );
+        
         close.drawButton(ges);
         min.drawButton(ges);
     }

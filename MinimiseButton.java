@@ -42,8 +42,8 @@ public class MinimiseButton extends Widget{
         ges.setColor(Color.YELLOW) ;
         ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
         ges.setColor(Color.BLACK) ;
-        ges.drawString("-", (this.positionX + this.width) /Constants.constant_to_get_midpoint, (this.positionY +this.height)/Constants.constant_to_get_midpoint );
-
+        ges.drawString("-", (this.positionX + this.width) / Constants.to_get_midpoint, 
+        		(this.positionY + this.height) / Constants.to_get_midpoint ); 
     }
 
 
