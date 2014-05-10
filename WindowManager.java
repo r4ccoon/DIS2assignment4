@@ -27,14 +27,14 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
 
         close = new CloseButton(Constants.close_button_width ,
         		Constants.close_button_height , 
-        		positionX + Constants.close_button_width +  Constants.spacing_between_buttons  , 
-        		positionY + Constants.close_button_width + Constants.spacing_between_buttons
+        		positionX +   Constants.spacing_between_buttons  , 
+        		positionY +   Constants.spacing_between_buttons
         );
         
         min = new MinimiseButton( Constants.minimise_button_height ,
         		Constants.minimise_button_width , 
-        		close.getPositionX() + Constants.minimise_button_width + Constants.spacing_between_buttons , 
-        		close.getPositionY() + Constants.minimise_button_height + Constants.spacing_between_buttons  
+        		close.getPositionX() +  Constants.spacing_between_buttons + close.getWidth() , 
+        		close.getPositionY()  
         ) ;
         
         //this.AddWidget(close);
@@ -61,11 +61,12 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
             ges.drawLine(positionX, positionY + height + 1, positionX + width, positionY + height + 1);
 
             // fill bg color
-            ges.setColor(new Color(138, 226, 237));
+            ges.setColor(new Color(138,226,237));
             ges.fillRect(positionX, positionY, positionX + width, positionY + height);
-
+ 
             //add decorator ( close + minimise buttons + tittle)
-            //ges.drawString(win.getTittle(), ( positionX + width ) / Constants.to_get_midpoint,( positionY + height ) / Constants.spacing_between_buttons );
+            //ges.drawString(win.getTittle(),  positionX , positionY  );
+        
         }
     }
 
@@ -93,10 +94,10 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
         win.OnWindowManagerOnMouseRelease();
     }
 
-	@Override
-	public void OnClick(Object o, EventArgs e) { 
-		System.out.println("on title bar click");
-	}
+    @Override
+    public void OnClick(Object o, EventArgs e) { 
+	System.out.println("on title bar click");
+    }
 
 
 
