@@ -36,7 +36,7 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
         		close.getPositionX() +  Constants.spacing_between_buttons + close.getWidth() , 
         		close.getPositionY()  
         ) ;
-        
+        this.tittle = win.getTittle() ;
         this.AddWidget(close);
         this.AddWidget(min);
     }
@@ -61,8 +61,10 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
             ges.setColor(new Color(138,226,237));
             ges.fillRect(positionX, positionY, positionX + width, positionY + height);
  
+            ges.setColor(Color.BLACK);
             //add decorator ( close + minimise buttons + tittle)
-            //ges.drawString(win.getTittle(),  positionX , positionY  );
+            ges.drawString(this.tittle,  positionX + Constants.xPositionTittleName , positionY + (this.height/Constants.to_get_midpoint) + 5  );
+
         }
 
         // the widgets in the "widgets" are drawn using this call
