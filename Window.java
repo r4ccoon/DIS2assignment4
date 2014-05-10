@@ -66,6 +66,9 @@ public class Window extends Widget {
 		// fill bg color
 		ges.setColor(new Color(232,232,232)); 
 		ges.fillRect(positionX, positionY, positionX + width, positionY + height);
+                
+                
+                
 	}
 
 	/**
