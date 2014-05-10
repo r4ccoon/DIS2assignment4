@@ -37,16 +37,13 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
         		close.getPositionY()  
         ) ;
         
-        //this.AddWidget(close);
-        //this.AddWidget(min);
+        this.AddWidget(close);
+        this.AddWidget(min);
     }
 
     //draw title bar
     @Override
     public void HandlePaint(GraphicsEventSystem ges){
-    	// the widgets in the "widgets" are drawn using this call
-    	super.HandlePaint(ges);
-
         // draw title bar
         {
             ges.setColor(new Color(150, 150, 150));
@@ -66,23 +63,10 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
  
             //add decorator ( close + minimise buttons + tittle)
             //ges.drawString(win.getTittle(),  positionX , positionY  );
-        
-        }
-    }
-
-    @Override
-    public boolean checkCollision(int x, int y){
-        System.out.println("----x");
-        System.out.println(x);
-        System.out.println("----y");
-        System.out.println(y);
-
-        if( x >= positionX && x <= positionX + width && y >= positionY && y <= positionY + height + Constants.OS_title_bar_height){
-            System.out.println("bebebe");
-            return true;
         }
 
-        return false;
+        // the widgets in the "widgets" are drawn using this call
+        super.HandlePaint(ges);
     }
 
     // handle mouse drag

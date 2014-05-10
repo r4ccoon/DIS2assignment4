@@ -27,13 +27,12 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
 
     @Override
     public void HandlePaint(GraphicsEventSystem ges){
-    	super.HandlePaint(ges);
-    	
         ges.setColor(Color.RED) ;
         ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
         ges.setColor(Color.BLACK) ;
         ges.drawString("X", this.positionX, this.positionY+ this.height);
 
+        super.HandlePaint(ges);
     }
 
     public void OnWindowManagerOnMouseDrag() {

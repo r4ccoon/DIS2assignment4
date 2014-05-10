@@ -78,7 +78,7 @@ public class Widget {
     }
 
     public boolean checkCollision(int x, int y){
-        if( x >= positionX && x <= positionX + width && y >= positionY && y <= positionY + height){
+        if( x >= positionX && x <= positionX + width && y >= positionY && y <= positionY + height + Constants.OS_title_bar_height){
             return true;
         }
 

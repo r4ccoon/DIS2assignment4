@@ -43,14 +43,12 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate{
 
     @Override
     public void HandlePaint(GraphicsEventSystem ges){
-    	super.HandlePaint(ges);
-    	
         ges.setColor(Color.YELLOW) ;
         ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
         ges.setColor(Color.BLACK) ;
         ges.drawString("-", this.positionX, this.positionY+ this.height);
 
-        
+        super.HandlePaint(ges);
     }
 
 	@Override
