@@ -53,7 +53,7 @@ public class WindowManager extends Widget{
         ges.fillRect(positionX, positionY, positionX + width, positionY + height);
  
         //add decorator ( close + minimise buttons + tittle)
-        ges.drawString(win.getTittle(), ( positionX + width ) / Constants.to_get_midpoint,( positionY + height ) / Constants.spacing_between_buttons );
+        //ges.drawString(win.getTittle(), ( positionX + width ) / Constants.to_get_midpoint,( positionY + height ) / Constants.spacing_between_buttons );
         
         close.drawButton(ges);
         min.drawButton(ges);
