@@ -76,8 +76,7 @@ public class Desktop extends GraphicsEventSystem{
 	}
 	
 	@Override
-	public void handleMouseClicked(int x, int y) {
-		// TODO Auto-generated method stub
+	public void handleMouseClicked(int x, int y) { 
 		super.handleMouseClicked(x, y);
 		
 		for (int i = 0; i < windows.size(); i++) { 
