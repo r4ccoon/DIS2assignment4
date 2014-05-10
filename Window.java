@@ -9,30 +9,37 @@ import java.awt.Color;
 public class Window extends Widget {
 	WindowManager manager;
  
-	public Window(int width, int height) {  
+	public Window( String title , int width, int height) {  
 		this.width = width;
 		this.height = height;
 
 		this.positionX = 0;
 		this.positionY = 0;		
 
+                this.tittle = title ;
+                
 		manager = new WindowManager();
 	}
  
-	public Window(int width, int height, int posX, int posY){ 
+	public Window( String title , int width, int height, int posX, int posY){ 
 		this.positionX = posX;
 		this.positionY = posY; 
 		
 		this.width = width;
 		this.height = height; 
+                
+                this.tittle = title ;
+
 	}
 
-	public Window(Vector2 v, int width, int height) { 
+	public Window(String title , Vector2 v, int width, int height) { 
 		this.positionX = v.getX();
 		this.positionY = v.getY();
 		 
 		this.width = width;
 		this.height = height; 
+                
+                this.tittle = title ;
 	} 
 	
 	public void SetManager(WindowManager mgr){

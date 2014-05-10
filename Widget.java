@@ -4,7 +4,15 @@ public class Widget {
 	protected int height;
 	protected int positionX;
 	protected int positionY;
+        protected String tittle ;
 
+        public String getTittle(){
+            return tittle ;
+        }
+        
+        public void setTittle(String tittle){
+            this.tittle = tittle ;
+        }
 	public int getWidth() {
 		return width;
 	}

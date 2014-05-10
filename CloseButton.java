@@ -47,7 +47,7 @@ public class CloseButton extends Widget {
             ges.setColor(Color.RED) ; 
 	    ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
             ges.setColor(Color.BLACK) ; 
-            ges.drawString("X", (this.positionX + this.width) /2, (this.positionY +this.height)/2 );
+            ges.drawString("X", (this.positionX + this.width) /Constants.constant_to_get_midpoint, (this.positionY +this.height)/Constants.constant_to_get_midpoint );
             
                 }
         
@@ -60,6 +60,8 @@ public class CloseButton extends Widget {
 		// TODO Auto-generated method stub
 
 	}
+        
+        
 
     
 }
