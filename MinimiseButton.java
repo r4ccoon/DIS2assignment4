@@ -1,5 +1,7 @@
 
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 
 import de.rwth.hci.Graphics.GraphicsEventSystem;
 
@@ -15,14 +17,8 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  */
 public class MinimiseButton extends Widget implements MouseHandlerDelegate {
 
-    public MinimiseButton(int width, int height) {
-        this.width = width;
-        this.height = height;
-
-        this.positionX = 0;
-        this.positionY = 0; 
-    }
-
+    protected List<MinimiseButtonListener> minimiseListener;
+     
     public MinimiseButton(int width, int height, int posX, int posY){
         this.positionX = posX;
         this.positionY = posY;
@@ -30,15 +26,14 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate {
         this.width = width;
         this.height = height;
         
-        setMouseClickDelegate(this);
-    }
-
-    public MinimiseButton(Vector2 v, int width, int height) {
-        this.positionX = v.getX();
-        this.positionY = v.getY();
-
-        this.width = width;
-        this.height = height;
+        AddActionListeners(this);
+    } 
+     
+    public void AddMinimiseButtonListener(MinimiseButtonListener listener){
+    	if(minimiseListener == null) 
+    		minimiseListener = new LinkedList<MinimiseButtonListener>();
+    	
+    	minimiseListener.add(listener);
     }
 
     @Override
@@ -53,7 +48,10 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate {
 
 	@Override
 	public void OnClick(Widget o, EventArgs e) {
-		System.out.println("on minimiize btn");
+		System.out.println("on minimiize btn"); 
+		        
+        for (MinimiseButtonListener hl : minimiseListener)
+            hl.OnClickMinimiseButton(this, e);
 	}
 
 	@Override
@@ -84,6 +82,6 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate {
 	public void OnWindowDragged(int movementX, int movementY){
 		positionX -= movementX;
 		positionY -= movementY;
-	}
+	} 
 
 }

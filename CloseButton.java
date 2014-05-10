@@ -1,5 +1,7 @@
 
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 
 import de.rwth.hci.Graphics.GraphicsEventSystem;
 
@@ -15,13 +17,24 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  */
 public class CloseButton extends Widget implements MouseHandlerDelegate { 
 
+    protected List<CloseButtonListener> closeListener;
+    
     public CloseButton(int width, int height, int posX, int posY){
         this.positionX = posX;
         this.positionY = posY;
 
         this.width = width;
         this.height = height;  
+        
+        this.AddActionListeners(this);
     }  
+    
+    public void AddCloseButtonListener(CloseButtonListener listener){
+    	if(closeListener == null) 
+    		closeListener = new LinkedList<CloseButtonListener>();
+    	
+    	closeListener.add(listener);
+    }
 
     @Override
     public void HandlePaint(GraphicsEventSystem ges){
@@ -50,7 +63,10 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
 
 	@Override
 	public void OnClick(Widget o, EventArgs e) {
-		System.out.println("onclose button");	
+		System.out.println("onclose button");
+		
+		for (CloseButtonListener hl : closeListener)
+            hl.OnClickCloseButton(this, e);
 	}
 
 	@Override
@@ -81,7 +97,7 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
 	public void OnWindowDragged(int movementX, int movementY){
 		positionX -= movementX;
 		positionY -= movementY;
-	}
-
-
+	} 
+	
+	
 }

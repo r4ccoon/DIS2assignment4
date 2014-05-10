@@ -6,7 +6,7 @@ import java.awt.Color;
  * @author rpl
  *
  */
-public class Window extends Widget {
+public class Window extends Widget implements CloseButtonListener, MinimiseButtonListener {
     WindowManager manager;
 
     public Window( String title , int width, int height) {
@@ -57,9 +57,7 @@ public class Window extends Widget {
      */
     private void drawWindow(Desktop ges){
         ges.setColor(new Color(150,150,150));
-
-        //draw top
-        //ges.drawLine(positionX - 1, positionY - 1, positionX + width + 1, positionY - 1);
+ 
         //draw left
         ges.drawLine(positionX - 1, positionY - 1, positionX - 1, positionY + 1 + height);
         //draw right
@@ -92,12 +90,7 @@ public class Window extends Widget {
     public void OnWindowManagerOnMouseDrag(int deltaX, int deltaY) {
     	positionX -= deltaX;
 		positionY -= deltaY;  
-    }
-
-    public void OnWindowManagerOnMouseRelease() {
-        // TODO Auto-generated method stub
-
-    }
+    } 
 
     @Override
     public void handleMouseClicked(EventArgs e){
@@ -152,4 +145,13 @@ public class Window extends Widget {
 		
 	}
 
+	@Override
+	public void OnClickCloseButton(Widget w, EventArgs e) {
+		Close();
+	}
+	
+	@Override 
+	public void OnClickMinimiseButton(Widget w, EventArgs e) {
+		Minimise();
+	}
 }

@@ -10,11 +10,12 @@ public class Widget {
     protected int positionX;
     protected int positionY;
     protected String tittle;
-    protected boolean isFocused;
-    protected MouseHandlerDelegate mouseClickDelegate;
+    protected boolean isFocused; 
+    
+    protected List<MouseHandlerDelegate> listeners;
 	
-	public void setMouseClickDelegate(MouseHandlerDelegate mouseClickDelegate) {
-		this.mouseClickDelegate = mouseClickDelegate;
+	public void AddActionListeners(MouseHandlerDelegate mouseClickDelegate) { 
+		listeners.add(mouseClickDelegate);
 	}
 
 	List<Widget> widgets;
@@ -22,9 +23,10 @@ public class Widget {
 	public Widget(){
 		isFocused = false;
 		
-		widgets = new LinkedList<Widget>(); 
+		widgets = new LinkedList<Widget>();  
+		listeners = new LinkedList<MouseHandlerDelegate>();
 	}
-	
+	 
 	public void AddWidget(Widget w){
 		widgets.add(w);
 	}
@@ -92,10 +94,10 @@ public class Widget {
         		w.handleMouseClicked(e);
         	}
 
-            if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) {
-                if (mouseClickDelegate != null) {
+            if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) { 
+                for (MouseHandlerDelegate hl : listeners){
                     // call callback
-                    mouseClickDelegate.OnClick(this, e);
+                    hl.OnClick(this, e);
                 }
             }
         }
@@ -110,10 +112,10 @@ public class Widget {
         if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) {
         	isFocused = true;
         	
-            if (mouseClickDelegate != null) {
+        	for (MouseHandlerDelegate hl : listeners){
                 // call callback
-                mouseClickDelegate.OnMousePressed(this, e);
-            }
+                hl.OnMousePressed(this, e);
+            } 
         }
 	}
 
@@ -122,14 +124,13 @@ public class Widget {
     		Widget w = widgets.get(i);
     		w.handleMouseReleased(e);
     	}
-
-        //if(checkCollision(e.getPosition().getX(), e.getPosition().getY()))
+ 
 		if(isFocused)
-        {
-            if (mouseClickDelegate != null) {
+        { 
+        	for (MouseHandlerDelegate hl : listeners){
                 // call callback
-                mouseClickDelegate.OnMouseReleased(this, e);
-            }
+                hl.OnMouseReleased(this, e);
+            }  
         } 
 	}
 
@@ -139,13 +140,10 @@ public class Widget {
     		w.handleMouseMoved(e);
     	}
 
-        //if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) 
-        {
-            if (mouseClickDelegate != null) {
-                // call callback
-                mouseClickDelegate.OnMouseMoved(this, e);
-            }
-        }
+    	for (MouseHandlerDelegate hl : listeners){
+            // call callback
+            hl.OnMouseMoved(this, e);
+        }   
 	}
 
 	public void handleMouseDragged(EventArgs e) {
@@ -153,14 +151,13 @@ public class Widget {
     		Widget w = widgets.get(i);
     		w.handleMouseDragged(e);
     	}
-
-        //if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) 
+ 
 		if(isFocused)
 		{
-            if (mouseClickDelegate != null) {
-                // call callback
-                mouseClickDelegate.OnMouseDragged(this, e);
-            }
+	    	for (MouseHandlerDelegate hl : listeners){
+	            // call callback
+	            hl.OnMouseDragged(this, e);
+	        }    
         }
 	}
 

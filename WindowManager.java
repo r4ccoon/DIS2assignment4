@@ -15,7 +15,7 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
     Vector2 mouseMovement;
 
     public WindowManager(){
-        this.setMouseClickDelegate(this);
+        this.AddActionListeners(this);
     }
 
     public void Initiate(Window window){
@@ -43,9 +43,12 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
 
         this.tittle = win.getTittle() ;
 
-        this.setMouseClickDelegate(this);
-        close.setMouseClickDelegate(this);
-        min.setMouseClickDelegate(this);
+        this.AddActionListeners(this);
+        close.AddActionListeners(this);
+        min.AddActionListeners(this);
+
+        close.AddCloseButtonListener(win);
+        min.AddMinimiseButtonListener(win);
 
         this.AddWidget(close);
         this.AddWidget(min);
@@ -83,7 +86,8 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
 
     @Override
     public void OnClick(Widget widget, EventArgs e) {
-        System.out.println("on title bar click");
+    	/*
+    	System.out.println("on title bar click");
 
         if(widget.getClass() == CloseButton.class){
             win.Close();
@@ -91,6 +95,7 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
         else if(widget.getClass() == MinimiseButton.class){
             win.Minimise();
         }
+        */
     }
 
     @Override
