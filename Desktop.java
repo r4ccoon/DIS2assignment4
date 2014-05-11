@@ -9,7 +9,7 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  * @author rpl
  *
  */
-public class Desktop extends GraphicsEventSystem{
+public class Desktop extends GraphicsEventSystem implements WindowEventListener{
     // take care of all windows
     List<Window> windows;
 
@@ -36,7 +36,8 @@ public class Desktop extends GraphicsEventSystem{
 
         WindowManager mgr = new WindowManager();
         win.SetManager(mgr);
-
+        win.AddWindowEventListener(this);
+        
         // add to the stacks
         windows.add(win);
 
@@ -53,7 +54,8 @@ public class Desktop extends GraphicsEventSystem{
 
         WindowManager mgr = new WindowManager();
         win.SetManager(mgr);
-
+        win.AddWindowEventListener(this);
+         
         // add to the stacks
         windows.add(win);
 
@@ -116,8 +118,7 @@ public class Desktop extends GraphicsEventSystem{
             win.handleMouseMoved(new EventArgs(x, y));
         }
     }
-
-    
+ 
     @Override
     public void handleMouseDragged(int x, int y) {
         super.handleMouseDragged(x, y);
@@ -128,5 +129,12 @@ public class Desktop extends GraphicsEventSystem{
         }
         
         this.requestRepaint();
-    }  
+    }
+
+	@Override
+	public void OnCloseWindow(Window win ) {
+		RemoveWindow(win);
+		
+		this.requestRepaint();
+	}  
 }

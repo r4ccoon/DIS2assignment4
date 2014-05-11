@@ -11,21 +11,14 @@ public class Main {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
-			public void run() {
-
+			public void run() { 
 				Desktop desktop = new Desktop();
 
 				// example create window inside the desktop
 				desktop.CreateWindow("Second", 640, 480);
 
 				// example create window inside the desktop
-				desktop.CreateWindow("First", new Vector2(400, 200), 100, 200);
-
-				//Desktop desktop1 = new Desktop();
-				//desktop1.CreateWindow("main window", 640, 480);
-
-				//desktop1.CreateWindow("second window", new Vector2(400, 200), 100, 200);
-
+				desktop.CreateWindow("First", new Vector2(400, 200), 100, 200); 
 			}
 		});
 

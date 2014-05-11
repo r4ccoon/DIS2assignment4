@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * the window class
@@ -8,6 +10,12 @@ import java.awt.Color;
  */
 public class Window extends Widget implements CloseButtonListener, MinimiseButtonListener {
     WindowManager manager;
+     
+    protected List<WindowEventListener> windowEventListeners;
+
+    public void AddWindowEventListener(WindowEventListener listener){ 
+    	windowEventListeners.add(listener);
+    }
 
     public Window( String title , int width, int height) {
         this.width = width;
@@ -17,6 +25,8 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
         this.positionY = 0;
 
         this.tittle = title ; 
+        
+        windowEventListeners = new LinkedList<WindowEventListener>();
     }
 
     public Window( String title , int width, int height, int posX, int posY){
@@ -27,6 +37,8 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
         this.height = height;
 
         this.tittle = title ;
+        
+        windowEventListeners = new LinkedList<WindowEventListener>();
     }
 
     public Window(String title , Vector2 v, int width, int height) {
@@ -37,6 +49,8 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
         this.height = height;
 
         this.tittle = title ;
+        
+        windowEventListeners = new LinkedList<WindowEventListener>();
     }
 
     public void SetManager(WindowManager mgr){
@@ -138,6 +152,9 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
      */
 	public void Close() {
 		System.out.println("close the window");
+		
+		for (WindowEventListener hl : windowEventListeners)
+            hl.OnCloseWindow(this); 
 	}
 
 	public void Minimise() {

@@ -25,14 +25,12 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
 
         this.width = width;
         this.height = height;  
-        
+
+		closeListener = new LinkedList<CloseButtonListener>();
         this.AddActionListeners(this);
     }  
     
-    public void AddCloseButtonListener(CloseButtonListener listener){
-    	if(closeListener == null) 
-    		closeListener = new LinkedList<CloseButtonListener>();
-    	
+    public void AddCloseButtonListener(CloseButtonListener listener){ 
     	closeListener.add(listener);
     }
 

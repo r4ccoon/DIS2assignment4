@@ -25,14 +25,12 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate {
 
         this.width = width;
         this.height = height;
-        
+
+		minimiseListener = new LinkedList<MinimiseButtonListener>();
         AddActionListeners(this);
     } 
      
-    public void AddMinimiseButtonListener(MinimiseButtonListener listener){
-    	if(minimiseListener == null) 
-    		minimiseListener = new LinkedList<MinimiseButtonListener>();
-    	
+    public void AddMinimiseButtonListener(MinimiseButtonListener listener){  
     	minimiseListener.add(listener);
     }
 
