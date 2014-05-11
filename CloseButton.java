@@ -15,9 +15,9 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  *
  * @author rohan
  */
-public class CloseButton extends Widget implements MouseHandlerDelegate { 
+public class CloseButton extends Widget implements MouseEventHandler { 
 
-    protected List<CloseButtonListener> closeListener;
+    protected List<CloseButtonHandler> closeListener;
     
     public CloseButton(int width, int height, int posX, int posY){
         this.positionX = posX;
@@ -26,11 +26,11 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
         this.width = width;
         this.height = height;  
 
-		closeListener = new LinkedList<CloseButtonListener>();
+		closeListener = new LinkedList<CloseButtonHandler>();
         this.AddActionListeners(this);
     }  
     
-    public void AddCloseButtonListener(CloseButtonListener listener){ 
+    public void AddCloseButtonListener(CloseButtonHandler listener){ 
     	closeListener.add(listener);
     }
 
@@ -63,7 +63,7 @@ public class CloseButton extends Widget implements MouseHandlerDelegate {
 	public void OnClick(Widget o, EventArgs e) {
 		System.out.println("onclose button");
 		
-		for (CloseButtonListener hl : closeListener)
+		for (CloseButtonHandler hl : closeListener)
             hl.OnClickCloseButton(this, e);
 	}
 

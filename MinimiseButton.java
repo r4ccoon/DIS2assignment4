@@ -15,9 +15,9 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  *
  * @author rohan
  */
-public class MinimiseButton extends Widget implements MouseHandlerDelegate {
+public class MinimiseButton extends Widget implements MouseEventHandler {
 
-    protected List<MinimiseButtonListener> minimiseListener;
+    protected List<MinimiseButtonHandler> minimiseListener;
      
     public MinimiseButton(int width, int height, int posX, int posY){
         this.positionX = posX;
@@ -26,11 +26,11 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate {
         this.width = width;
         this.height = height;
 
-		minimiseListener = new LinkedList<MinimiseButtonListener>();
+		minimiseListener = new LinkedList<MinimiseButtonHandler>();
         AddActionListeners(this);
     } 
      
-    public void AddMinimiseButtonListener(MinimiseButtonListener listener){  
+    public void AddMinimiseButtonListener(MinimiseButtonHandler listener){  
     	minimiseListener.add(listener);
     }
 
@@ -48,7 +48,7 @@ public class MinimiseButton extends Widget implements MouseHandlerDelegate {
 	public void OnClick(Widget o, EventArgs e) {
 		System.out.println("on minimiize btn"); 
 		        
-        for (MinimiseButtonListener hl : minimiseListener)
+        for (MinimiseButtonHandler hl : minimiseListener)
             hl.OnClickMinimiseButton(this, e);
 	}
 

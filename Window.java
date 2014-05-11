@@ -8,15 +8,15 @@ import java.util.List;
  * @author rpl
  *
  */
-public class Window extends Widget implements CloseButtonListener, MinimiseButtonListener {
+public class Window extends Widget implements CloseButtonHandler, MinimiseButtonHandler {
     WindowManager manager;
      
-    protected List<WindowEventListener> windowEventListeners;
+    protected List<WindowEventHandler> windowEventListeners;
     Vector2 temporarySize = new Vector2();
 
 	private boolean isMinimized = false;
 
-    public void AddWindowEventListener(WindowEventListener listener){ 
+    public void AddWindowEventListener(WindowEventHandler listener){ 
     	windowEventListeners.add(listener);
     }
 
@@ -29,7 +29,7 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
 
         this.tittle = title ; 
         
-        windowEventListeners = new LinkedList<WindowEventListener>();
+        windowEventListeners = new LinkedList<WindowEventHandler>();
     } 
 
     public Window(String title , Vector2 v, int width, int height) {
@@ -41,7 +41,7 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
 
         this.tittle = title ;
         
-        windowEventListeners = new LinkedList<WindowEventListener>();
+        windowEventListeners = new LinkedList<WindowEventHandler>();
     }
 
     public void SetManager(WindowManager mgr){
@@ -164,7 +164,7 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
 	public void Close() {
 		System.out.println("close the window");
 		
-		for (WindowEventListener hl : windowEventListeners)
+		for (WindowEventHandler hl : windowEventListeners)
             hl.OnCloseWindow(this); 
 	}
 

@@ -7,7 +7,7 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  * @author rpl
  *
  */
-public class WindowManager extends Widget implements MouseHandlerDelegate{
+public class WindowManager extends Widget implements MouseEventHandler{
     Window win;
     CloseButton close ;
     MinimiseButton min ;

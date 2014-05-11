@@ -9,7 +9,7 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  * @author rpl
  *
  */
-public class Desktop extends GraphicsEventSystem implements WindowEventListener{
+public class Desktop extends GraphicsEventSystem implements WindowEventHandler{
     // take care of all windows
     List<Window> windows;
 

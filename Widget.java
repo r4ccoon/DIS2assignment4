@@ -12,9 +12,9 @@ public class Widget {
     protected String tittle;
     protected boolean isFocused; 
     
-    protected List<MouseHandlerDelegate> listeners;
+    protected List<MouseEventHandler> listeners;
 	
-	public void AddActionListeners(MouseHandlerDelegate mouseClickDelegate) { 
+	public void AddActionListeners(MouseEventHandler mouseClickDelegate) { 
 		listeners.add(mouseClickDelegate);
 	}
 
@@ -24,7 +24,7 @@ public class Widget {
 		isFocused = false;
 		
 		widgets = new LinkedList<Widget>();  
-		listeners = new LinkedList<MouseHandlerDelegate>();
+		listeners = new LinkedList<MouseEventHandler>();
 	}
 	 
 	public void AddWidget(Widget w){
@@ -95,7 +95,7 @@ public class Widget {
         	}
 
             if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) { 
-                for (MouseHandlerDelegate hl : listeners){
+                for (MouseEventHandler hl : listeners){
                     // call callback
                     hl.OnClick(this, e);
                 }
@@ -112,7 +112,7 @@ public class Widget {
         if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) {
         	isFocused = true;
         	
-        	for (MouseHandlerDelegate hl : listeners){
+        	for (MouseEventHandler hl : listeners){
                 // call callback
                 hl.OnMousePressed(this, e);
             } 
@@ -127,7 +127,7 @@ public class Widget {
  
 		if(isFocused)
         { 
-        	for (MouseHandlerDelegate hl : listeners){
+        	for (MouseEventHandler hl : listeners){
                 // call callback
                 hl.OnMouseReleased(this, e);
             }  
@@ -140,7 +140,7 @@ public class Widget {
     		w.handleMouseMoved(e);
     	}
 
-    	for (MouseHandlerDelegate hl : listeners){
+    	for (MouseEventHandler hl : listeners){
             // call callback
             hl.OnMouseMoved(this, e);
         }   
@@ -154,7 +154,7 @@ public class Widget {
  
 		if(isFocused)
 		{
-	    	for (MouseHandlerDelegate hl : listeners){
+	    	for (MouseEventHandler hl : listeners){
 	            // call callback
 	            hl.OnMouseDragged(this, e);
 	        }    

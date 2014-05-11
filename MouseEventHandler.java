@@ -1,5 +1,5 @@
 
-public interface MouseHandlerDelegate {
+public interface MouseEventHandler {
 	
 	public void OnClick(Widget Widget, EventArgs e );
 
