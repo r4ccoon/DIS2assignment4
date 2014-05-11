@@ -1,5 +1,13 @@
 DIS2assignment3
 ===============
+to compile the window program
+> javac -cp GES.jar *.java
+to run 
+> java Main
+
+!!
+please extract GES.jar if you find any java.lang.NoClassDefFoundError Exception 
+when running it after compile success
 
 ## DISCLAIMER
 -------------
