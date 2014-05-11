@@ -154,4 +154,14 @@ public class WindowManager extends Widget implements MouseHandlerDelegate{
             }
         }
     }
+
+    /**
+     * Set Size of the manager, usually being called by minimize and maximize function
+     * pass in the new width and height
+     * 
+     * @param vWidth 
+     */
+	public void SetWidth(int vWidth ) {
+		width = vWidth; 
+	}
 }

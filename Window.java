@@ -12,6 +12,9 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
     WindowManager manager;
      
     protected List<WindowEventListener> windowEventListeners;
+    Vector2 temporarySize = new Vector2();
+
+	private boolean isMinimized = false;
 
     public void AddWindowEventListener(WindowEventListener listener){ 
     	windowEventListeners.add(listener);
@@ -27,19 +30,7 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
         this.tittle = title ; 
         
         windowEventListeners = new LinkedList<WindowEventListener>();
-    }
-
-    public Window( String title , int width, int height, int posX, int posY){
-        this.positionX = posX;
-        this.positionY = posY;
-
-        this.width = width;
-        this.height = height;
-
-        this.tittle = title ;
-        
-        windowEventListeners = new LinkedList<WindowEventListener>();
-    }
+    } 
 
     public Window(String title , Vector2 v, int width, int height) {
         this.positionX = v.getX();
@@ -59,14 +50,34 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
     }
 
     protected void handlePaint(Desktop ges) {
-        drawWindow(ges);
-
-        manager.HandlePaint(ges);
-
+    	if(isMinimized){
+    	    drawMinimizedWindow(ges);    
+    	}
+    	else
+    	{
+	        drawWindow(ges);
+    	}
+    	
+        manager.HandlePaint(ges); 
         ges.requestRepaint();
     }
 
-    /**
+    private void drawMinimizedWindow(Desktop ges) {
+        ges.setColor(new Color(150,150,150));
+ 
+        //draw left
+        ges.drawLine(positionX - 1, positionY - 1, positionX - 1, positionY + 1 + Constants.height_minimized);
+        //draw right
+        ges.drawLine(positionX + 1 + Constants.width_minimized, positionY - 1, positionX + Constants.width_minimized + 1, positionY + Constants.height_minimized + 1);
+        //draw bottom
+        ges.drawLine(positionX, positionY + Constants.height_minimized + 1, positionX + Constants.width_minimized, positionY + Constants.height_minimized + 1);
+
+        // fill bg color
+        ges.setColor(new Color(196, 196, 196));
+        ges.fillRect(positionX, positionY, positionX + Constants.width_minimized, positionY + Constants.height_minimized); 
+	}
+
+	/**
      * draw square window
      */
     private void drawWindow(Desktop ges){
@@ -158,8 +169,29 @@ public class Window extends Widget implements CloseButtonListener, MinimiseButto
 	}
 
 	public void Minimise() {
-		System.out.println("minimize the window");
+		// if it s minimized. maximize it!!
+		if(isMinimized){ 
+			System.out.println("maximize the window"); 
+			
+			width  = temporarySize.getX();
+			height = temporarySize.getY();
+			
+			isMinimized  = false;
+		}
+		else // minimize it
+		{
+			System.out.println("minimize the window");
+			
+			temporarySize.setX(width);
+			temporarySize.setY(height);
+			
+			width  = Constants.width_minimized;
+			height = Constants.height_minimized;
+			
+			isMinimized  = true;
+		}
 		
+		manager.SetWidth(width);
 	}
 
 	@Override
