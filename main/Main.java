@@ -1,5 +1,9 @@
+package main;
 
 import javax.swing.SwingUtilities;
+
+import toolkit.Desktop;
+import toolkit.Vector2;
 
 
 public class Main {

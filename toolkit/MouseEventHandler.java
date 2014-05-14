@@ -1,3 +1,4 @@
+package toolkit;
 
 public interface MouseEventHandler {
 	

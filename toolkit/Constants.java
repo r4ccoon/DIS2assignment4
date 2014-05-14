@@ -1,3 +1,4 @@
+package toolkit;
 // todo: remove hardcoded values
 
 public class Constants {

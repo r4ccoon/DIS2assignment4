@@ -1,3 +1,4 @@
+package toolkit;
 import java.awt.Color;
 import de.rwth.hci.Graphics.GraphicsEventSystem;
 

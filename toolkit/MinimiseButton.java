@@ -1,3 +1,4 @@
+package toolkit;
 
 import java.awt.Color;
 import java.util.LinkedList;
@@ -15,56 +16,41 @@ import de.rwth.hci.Graphics.GraphicsEventSystem;
  *
  * @author rohan
  */
-public class CloseButton extends Widget implements MouseEventHandler { 
+public class MinimiseButton extends Widget implements MouseEventHandler {
 
-    protected List<CloseButtonHandler> closeListener;
-    
-    public CloseButton(int width, int height, int posX, int posY){
+    protected List<MinimiseButtonHandler> minimiseListener;
+     
+    public MinimiseButton(int width, int height, int posX, int posY){
         this.positionX = posX;
         this.positionY = posY;
 
         this.width = width;
-        this.height = height;  
+        this.height = height;
 
-		closeListener = new LinkedList<CloseButtonHandler>();
-        this.AddActionListeners(this);
-    }  
-    
-    public void AddCloseButtonListener(CloseButtonHandler listener){ 
-    	closeListener.add(listener);
+		minimiseListener = new LinkedList<MinimiseButtonHandler>();
+        AddActionListeners(this);
+    } 
+     
+    public void AddMinimiseButtonListener(MinimiseButtonHandler listener){  
+    	minimiseListener.add(listener);
     }
 
     @Override
     public void HandlePaint(GraphicsEventSystem ges){
-        ges.setColor(Color.RED) ;
+        ges.setColor(Color.YELLOW) ;
         ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
         ges.setColor(Color.BLACK) ;
-        ges.drawString("X", this.positionX, this.positionY+ this.height);
+        ges.drawString("-", this.positionX, this.positionY+ this.height);
 
         super.HandlePaint(ges);
     }
 
-    @Override
-    public boolean checkCollision(int x, int y){
-       return super.checkCollision(x, y);
-    }
-    
-    public void OnWindowManagerOnMouseDrag() {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void OnWindowManagerOnMouseRelease() {
-        // TODO Auto-generated method stub
-
-    }
-
 	@Override
 	public void OnClick(Widget o, EventArgs e) {
-		System.out.println("onclose button");
-		
-		for (CloseButtonHandler hl : closeListener)
-            hl.OnClickCloseButton(this, e);
+		System.out.println("on minimiize btn"); 
+		        
+        for (MinimiseButtonHandler hl : minimiseListener)
+            hl.OnClickMinimiseButton(this, e);
 	}
 
 	@Override
@@ -89,13 +75,12 @@ public class CloseButton extends Widget implements MouseEventHandler {
 	public void OnMouseDragged(Widget widget, EventArgs e) {
 		// TODO Auto-generated method stub
 		
-	}
- 
+	} 
+	
 	@Override
 	public void OnWindowDragged(int movementX, int movementY){
 		positionX -= movementX;
 		positionY -= movementY;
 	} 
-	
-	
+
 }

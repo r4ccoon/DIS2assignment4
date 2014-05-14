@@ -1,3 +1,4 @@
+package toolkit;
 
 public class SizeType {
 	public static final int width = 0;
