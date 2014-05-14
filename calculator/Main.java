@@ -1,10 +1,9 @@
-package helloworld;
-
-import javax.swing.SwingUtilities;
+package calculator;
 
 import toolkit.Desktop;
-import toolkit.Vector2;
 import toolkit.Window;
+
+import javax.swing.*;
 
 
 public class Main {
@@ -19,7 +18,7 @@ public class Main {
 			public void run() { 
 				Desktop desktop = new Desktop(); 
 				
-				Window root = desktop.CreateWindow("Hello World App", 640, 480);  
+				Window root = desktop.CreateWindow("Calculator App", 640, 480);
 				root.AddWidget(new MainForm());
 			}
 		});

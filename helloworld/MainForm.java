@@ -3,7 +3,12 @@ package helloworld;
 import toolkit.*;
 
 /**
- * Created by rpl on 5/15/2014.
+ *
+ * class to handle creation of widgets.
+ * create english, francois, german  buttons.
+ * create the label as well
+ *
  */
 public class MainForm extends Panel {
+
 }
