@@ -19,6 +19,9 @@ than the app will not work correctly.
 the setting that we are optimizing our app to:
 Windows 8. with window border size = 0px. and title bar = 25px 
 
+###
+### Answers
+###
 Graphics and Event Library;
  -> toolkit.Desktop extends GraphicsEventLibrary
 
@@ -37,5 +40,12 @@ Application
 
 Extra
 =====
-slider widget
-toolkit.Slider
+slider widget -> toolkit.Slider
+
+todo
+===== there are some things left to do:
+1. to center the text on the buttons. ( i think it s ok just to leave it like now but if you wanna change it is up to you)
+2. to use the slider to change the color of the background of the label.
+atm, i set the bg color of the label as green. 
+the slider already produce number from 1 to 100.. 
+use Slider::getValue to get the altered value
