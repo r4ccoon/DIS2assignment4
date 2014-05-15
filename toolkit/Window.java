@@ -64,6 +64,15 @@ public class Window extends Widget implements CloseButtonHandler, MinimiseButton
         ges.requestRepaint();
     }
 
+    @Override
+    public void handlePaint(Desktop ges){
+        if(isMinimized){
+            HandlePaint(ges);
+        } else{
+            super.handlePaint(ges);
+        }
+    }
+
     private void drawMinimizedWindow(Desktop ges) {
         ges.setColor(new Color(150,150,150));
  

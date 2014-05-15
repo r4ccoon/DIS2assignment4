@@ -81,8 +81,6 @@ public class Desktop extends GraphicsEventSystem implements WindowEventHandler{
 
     @Override
     public void handleMouseClicked(int x, int y) {
-        super.handleMouseClicked(x, y);
-
         for (int i = 0; i < windows.size(); i++) {
             Window win = windows.get(i);
             win.handleMouseClicked(new EventArgs(x, y));
@@ -94,8 +92,6 @@ public class Desktop extends GraphicsEventSystem implements WindowEventHandler{
 
     @Override
     public void handleMousePressed(int x, int y) {
-        super.handleMousePressed(x, y);
-
         for (int i = 0; i < windows.size(); i++) { 
             Window win = windows.get(i);
             win.handleMousePressed(new EventArgs(x, y));
@@ -104,8 +100,6 @@ public class Desktop extends GraphicsEventSystem implements WindowEventHandler{
     
     @Override
     public void handleMouseReleased(int x, int y) {
-        super.handleMouseReleased(x, y);
-
         for (int i = 0; i < windows.size(); i++) {
             Window win = windows.get(i);
             win.handleMouseReleased(new EventArgs(x, y));
@@ -114,8 +108,6 @@ public class Desktop extends GraphicsEventSystem implements WindowEventHandler{
     
     @Override
     public void handleMouseMoved(int x, int y) {
-        super.handleMouseMoved(x, y);
-
         for (int i = 0; i < windows.size(); i++) {
             Window win = windows.get(i);
             win.handleMouseMoved(new EventArgs(x, y));

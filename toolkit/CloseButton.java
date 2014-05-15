@@ -26,7 +26,6 @@ public class CloseButton extends Button  {
         this.height = height;  
 
 		closeListener = new LinkedList<CloseButtonHandler>();
-        this.AddActionListeners(this);
 
         this.setText("X");
         this.setBackgroundColor(Color.RED);

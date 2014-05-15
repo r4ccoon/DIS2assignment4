@@ -16,7 +16,7 @@ public class Main {
 			public void run() { 
 				Desktop desktop = new Desktop(); 
 				
-				Window root = desktop.CreateWindow("Hello World App", 640, 480);
+				Window root = desktop.CreateWindow("Hello", 640, 480);
 
                 MainForm form = new MainForm(10, 40, 640, 480);
 				root.AddWidget(form);

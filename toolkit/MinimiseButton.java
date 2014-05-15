@@ -26,7 +26,6 @@ public class MinimiseButton extends Button {
         this.height = height;
 
 		minimiseListener = new LinkedList<MinimiseButtonHandler>();
-        AddActionListeners(this);
 
         this.setText("-");
 

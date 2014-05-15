@@ -4,10 +4,8 @@ import toolkit.*;
 import toolkit.Button;
 import toolkit.Desktop;
 import toolkit.Label;
-import toolkit.Panel;
 
 import java.awt.*;
-import java.util.Dictionary;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -18,7 +16,7 @@ import java.util.Map;
  * create the label as well
  *
  */
-public class MainForm extends Panel implements ButtonEventHandler {
+public class MainForm extends Widget implements ButtonEventHandler {
 
     LinkedHashMap<String, String> HelloLanguage = new LinkedHashMap<String, String>();
     Label hello ;
