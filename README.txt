@@ -1,13 +1,11 @@
-DIS2assignment3
+DIS2assignment4
 ===============
 to compile the window program
-> javac -cp GES.jar *.java
-to run 
-> java Main
+javac -cp GES.jar;. toolkit/*.java
+javac -cp GES.jar;. helloworld/*.java
 
-!!
-please extract GES.jar if you find any java.lang.NoClassDefFoundError Exception 
-when running it after compile success
+to run
+java -cp GES.jar;. helloworld.Main
 
 ## DISCLAIMER
 -------------
@@ -21,45 +19,23 @@ than the app will not work correctly.
 the setting that we are optimizing our app to:
 Windows 8. with window border size = 0px. and title bar = 25px 
 
-Implemented
-===========
-it will show 2 windows at start.
-drag drop window movement with visual feedback.
-close and minimize button.
+Graphics and Event Library;
+ -> toolkit.Desktop extends GraphicsEventLibrary
 
-Design choice
-=============
-##
-could you please attach/show the class diagram in /MISC/ on the final pdf submission..
-or if you would, you can explain the picture by words.
-##
+Base Window System;
+ -> toolkit.Window
 
-Desktop which we extends GES have accesses to only the root Windows.
-We want to create a similar as the X system which they can instantiate different type of WindowManager without having the Window's consent .
-so that is why we create the WindowManager and than assign them to the Window after it has been created. 
-then we initialize the WindowManager with some relevant parameters that belong to its Window .
+Window Manager;
+ -> toolkit.WindowManager
 
-obviously to be able to control its assigned Window, we have this WindowManager to have access to its Window that it manages.
+UI Toolkit;
+ -> toolkit.*
 
-we passing around GES to the methods that draw, and color.
+Application
+ -> helloworld.MainForm
+ -> helloworld.*
 
-design pattern that we chose:
-####
-Factory Pattern:
-Desktop that handles creating and removing windows.
-
-Observer Pattern:
-we have List of listeners to some of our classes.
-we implemented EventHandler Interface that can be implemented to any of classes that wants to listen to the Event.
-we then add those object of the class that implements its handler.
- 
-
-ExtraCredit
-===========
-Border around window
-minimizing the window 
----------------------
-(though not into an icon). we could say into a "mini mode".
-this will make it smaller and make its background color into a bit darker.. 
-click again the minimize button while in mini mode to maximize it.
-
+Extra
+=====
+slider widget
+toolkit.Slider

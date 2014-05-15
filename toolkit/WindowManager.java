@@ -120,8 +120,6 @@ public class WindowManager extends Widget implements MouseEventHandler{
     public void OnMouseDragged(Widget widget, EventArgs e) {
         if(widget.getClass() == WindowManager.class && isFocused)
         {
-            System.out.println("OnMouseDragged");
-
             int deltaX = mouseMovement.getX() - e.position.getX();
             int deltaY = mouseMovement.getY() - e.position.getY();
 
