@@ -50,7 +50,8 @@ public class Window extends Widget implements CloseButtonHandler, MinimiseButton
         mgr.Initiate(this);
     }
 
-    protected void handlePaint(Desktop ges) {
+    @Override
+    protected void HandlePaint(Desktop ges) {
     	if(isMinimized){
     	    drawMinimizedWindow(ges);    
     	}
@@ -59,7 +60,7 @@ public class Window extends Widget implements CloseButtonHandler, MinimiseButton
 	        drawWindow(ges);
     	}
     	
-        manager.HandlePaint(ges); 
+        manager.handlePaint(ges);
         ges.requestRepaint();
     }
 
@@ -96,27 +97,11 @@ public class Window extends Widget implements CloseButtonHandler, MinimiseButton
         ges.fillRect(positionX, positionY, positionX + width, positionY + height); 
     }
 
-    /**
-     *
-     * @param originX
-     * @param originY
-     * @param destinationX
-     * @param destinationY
-     */
-    protected void drawLine(Desktop ges, float originX, float originY, float destinationX, float destinationY){
-        int origX = Helper.Convert(SizeType.width, originX, width, height);
-        int origY = Helper.Convert(SizeType.height, originY, width, height);
-
-        int destX = Helper.Convert(SizeType.width, destinationX, width, height);
-        int destY = Helper.Convert(SizeType.height, destinationY, width, height);
-
-        ges.drawLine(origX, origY, destX, destY);
-    }
-
+    /*
     public void OnWindowManagerOnMouseDrag(int deltaX, int deltaY) {
     	positionX -= deltaX;
-		positionY -= deltaY;  
-    } 
+		positionY -= deltaY;
+    }*/
 
     @Override
     public void handleMouseClicked(EventArgs e){

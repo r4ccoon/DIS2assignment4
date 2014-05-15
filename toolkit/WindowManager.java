@@ -1,6 +1,5 @@
 package toolkit;
 import java.awt.Color;
-import de.rwth.hci.Graphics.GraphicsEventSystem;
 
 /**
  * skin the windows (the title bar) etc.. 
@@ -55,9 +54,8 @@ public class WindowManager extends Widget implements MouseEventHandler{
         this.AddWidget(min);
     }
 
-    //draw title bar
     @Override
-    public void HandlePaint(GraphicsEventSystem ges){
+    protected void HandlePaint(Desktop ges){
         // draw title bar
         {
             ges.setColor(new Color(150, 150, 150));
@@ -78,25 +76,11 @@ public class WindowManager extends Widget implements MouseEventHandler{
             ges.setColor(Color.BLACK);
             //add decorator ( close + minimise buttons + tittle)
             ges.drawString(this.tittle,  positionX + Constants.xPositionTittleName , positionY + (this.height/Constants.to_get_midpoint) + 5  );
-
         }
-
-        // the widgets in the "widgets" are drawn using this call
-        super.HandlePaint(ges);
     }
 
     @Override
     public void OnClick(Widget widget, EventArgs e) {
-    	/*
-    	System.out.println("on title bar click");
-
-        if(widget.getClass() == CloseButton.class){
-            win.Close();
-        }
-        else if(widget.getClass() == MinimiseButton.class){
-            win.Minimise();
-        }
-        */
     }
 
     @Override
@@ -147,7 +131,7 @@ public class WindowManager extends Widget implements MouseEventHandler{
             mouseMovement.setX(e.position.getX());
             mouseMovement.setY(e.position.getY());
 
-            win.OnWindowManagerOnMouseDrag(deltaX, deltaY);
+            win.OnWindowDragged(deltaX, deltaY);
 
             for(int i = 0; i < widgets.size(); i++){
                 Widget w = widgets.get(i);

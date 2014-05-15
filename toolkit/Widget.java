@@ -2,16 +2,19 @@ package toolkit;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.rwth.hci.Graphics.GraphicsEventSystem;
 
-
-public class Widget {
+public abstract class Widget {
     protected int width;
     protected int height;
     protected int positionX;
     protected int positionY;
     protected String tittle;
     protected boolean isFocused; 
+     
+    // identifier
+    protected String Text; 
+    protected Object Value;
+    protected String Name;
     
     protected List<MouseEventHandler> listeners;
 	
@@ -28,6 +31,30 @@ public class Widget {
 		listeners = new LinkedList<MouseEventHandler>();
 	}
 	 
+	public String getText() {
+		return Text;
+	}
+
+	public void setText(String text) {
+		Text = text;
+	}
+
+	public Object getValue() {
+		return Value;
+	}
+
+	public void setValue(Object value) {
+		Value = value;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
 	public void AddWidget(Widget w){
 		widgets.add(w);
 	}
@@ -72,12 +99,21 @@ public class Widget {
         this.positionY = positionY;
     }
     
-    public void HandlePaint(GraphicsEventSystem ges){
-    	// print this and the child
-    	for(int i = 0; i < widgets.size() ; i++){
-    		Widget w = widgets.get(i);
-    		w.HandlePaint(ges);
-    	}
+    /**
+     *  
+     * @param ges Desktop
+     */
+    protected abstract void HandlePaint(Desktop ges);
+
+    public void handlePaint(Desktop ges){
+        // print this one
+        this.HandlePaint(ges);
+
+        // print the children
+        for(int i = 0; i < widgets.size() ; i++){
+            Widget w = widgets.get(i);
+            w.handlePaint(ges);
+        }
     }
 
     public boolean checkCollision(int x, int y){
@@ -88,18 +124,16 @@ public class Widget {
         return false;
     }
     
-    public void handleMouseClicked(EventArgs e){ 
-        {
-        	for(int i = 0; i < widgets.size(); i++){
-        		Widget w = widgets.get(i);
-        		w.handleMouseClicked(e);
-        	}
+    public void handleMouseClicked(EventArgs e){
+        for(int i = 0; i < widgets.size(); i++){
+            Widget w = widgets.get(i);
+            w.handleMouseClicked(e);
+        }
 
-            if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) { 
-                for (MouseEventHandler hl : listeners){
-                    // call callback
-                    hl.OnClick(this, e);
-                }
+        if(checkCollision(e.getPosition().getX(), e.getPosition().getY())) {
+            for (MouseEventHandler hl : listeners){
+                // call callback
+                hl.OnClick(this, e);
             }
         }
     } 
@@ -163,7 +197,12 @@ public class Widget {
 	}
 
 	public void OnWindowDragged(int deltaX, int deltaY) {
-		// TODO Auto-generated method stub
-		
+        for(int i = 0; i < widgets.size(); i++){
+            Widget w = widgets.get(i);
+            w.OnWindowDragged(deltaX, deltaY);
+        }
+
+        positionX -= deltaX;
+        positionY -= deltaY;
 	}
 }
