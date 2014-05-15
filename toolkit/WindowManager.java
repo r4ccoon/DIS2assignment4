@@ -70,7 +70,7 @@ public class WindowManager extends Widget implements MouseEventHandler{
             ges.drawLine(positionX, positionY + height + 1, positionX + width, positionY + height + 1);
 
             // fill bg color
-            ges.setColor(new Color(138,226,237));
+            ges.setColor(new Color(138, 226, 237));
             ges.fillRect(positionX, positionY, positionX + width, positionY + height);
 
             ges.setColor(Color.BLACK);

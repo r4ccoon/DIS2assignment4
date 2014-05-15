@@ -33,11 +33,13 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
 
         // create label
         hello =  new Label("hello");
-		hello.setWidth(300);
+		hello.setWidth(100);
 		hello.setHeight(30);
 		hello.setPositionX(50);
 		hello.setPositionY(110);				
 		hello.setText("Good day");
+		hello.setBackgroundColor(Color.green);
+		hello.setForegroundColor(Color.black);
 
 		this.AddWidget(hello);
 
@@ -72,10 +74,12 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
         Label sliderAcc1 =  new Label("sliderAcc1", "slider current value: " );
         sliderAcc1.setPositionX(100);
         sliderAcc1.setPositionY(330);
+        sliderAcc1.setForegroundColor(Color.black);
 
         sliderValue =  new Label("sliderValue" );
         sliderValue.setPositionX(100);
-        sliderValue.setPositionY(350);
+        sliderValue.setPositionY(350); 
+        sliderValue.setForegroundColor(Color.black);
         Float f = 0.0f;
         sliderValue.setText(f.toString());
 

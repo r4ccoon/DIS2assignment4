@@ -1,7 +1,5 @@
 package toolkit;
-
-import java.awt.Color;
-
+ 
 public class Label extends Widget { 
 	
 	/**
@@ -27,8 +25,11 @@ public class Label extends Widget {
 
 	@Override
 	protected void HandlePaint(Desktop ges){
-        ges.setColor(Color.BLACK);
-        ges.drawString(this.Text, positionX, positionY);
+        ges.setColor(BackgroundColor) ;
+        ges.fillRect(this.positionX, this.positionY - this.height/2, this.positionX + this.width, this.positionY + this.height);
+        
+        ges.setColor(ForegroundColor);
+        ges.drawString(this.Text, positionX, positionY + this.height/2);
 	}
 	
 	
