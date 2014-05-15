@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author rohan
  */
-public class MinimiseButton extends Widget implements MouseEventHandler {
+public class MinimiseButton extends Button {
 
     protected List<MinimiseButtonHandler> minimiseListener;
      
@@ -27,18 +27,15 @@ public class MinimiseButton extends Widget implements MouseEventHandler {
 
 		minimiseListener = new LinkedList<MinimiseButtonHandler>();
         AddActionListeners(this);
+
+        this.setText("-");
+
+        this.setBackgroundColor(Color.YELLOW);
+        this.setForegroundColor(Color.BLACK);
     } 
      
     public void AddMinimiseButtonListener(MinimiseButtonHandler listener){  
     	minimiseListener.add(listener);
-    }
-
-    @Override
-    protected void HandlePaint(Desktop ges){
-        ges.setColor(Color.YELLOW) ;
-        ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
-        ges.setColor(Color.BLACK) ;
-        ges.drawString("-", this.positionX, this.positionY+ this.height);
     }
 
 	@Override
@@ -48,35 +45,5 @@ public class MinimiseButton extends Widget implements MouseEventHandler {
         for (MinimiseButtonHandler hl : minimiseListener)
             hl.OnClickMinimiseButton(this, e);
 	}
-
-	@Override
-	public void OnMousePressed(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void OnMouseReleased(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void OnMouseMoved(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void OnMouseDragged(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	} 
-	
-	@Override
-	public void OnWindowDragged(int movementX, int movementY){
-		positionX -= movementX;
-		positionY -= movementY;
-	} 
 
 }

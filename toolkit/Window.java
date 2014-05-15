@@ -97,12 +97,6 @@ public class Window extends Widget implements CloseButtonHandler, MinimiseButton
         ges.fillRect(positionX, positionY, positionX + width, positionY + height); 
     }
 
-    /*
-    public void OnWindowManagerOnMouseDrag(int deltaX, int deltaY) {
-    	positionX -= deltaX;
-		positionY -= deltaY;
-    }*/
-
     @Override
     public void handleMouseClicked(EventArgs e){
         super.handleMouseClicked(e);
@@ -142,7 +136,6 @@ public class Window extends Widget implements CloseButtonHandler, MinimiseButton
         if(manager != null)
             manager.handleMouseDragged(e);
     }
-
 
     /**
      * close the window

@@ -87,6 +87,8 @@ public class Desktop extends GraphicsEventSystem implements WindowEventHandler{
             Window win = windows.get(i);
             win.handleMouseClicked(new EventArgs(x, y));
         }
+
+        this.requestRepaint();
     }
     
 

@@ -1,4 +1,5 @@
 package toolkit;
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +16,25 @@ public abstract class Widget {
     protected String Text; 
     protected Object Value;
     protected String Name;
+
+    protected Color BackgroundColor;
+    public Color getForegroundColor() {
+		return ForegroundColor;
+	}
+
+	public void setForegroundColor(Color foregroundColor) {
+		ForegroundColor = foregroundColor;
+	}
+
+	public Color getBackgroundColor() {
+		return BackgroundColor;
+	}
+
+	public void setBackgroundColor(Color backgroundColor) {
+		BackgroundColor = backgroundColor;
+	}
+
+	protected Color ForegroundColor;
     
     protected List<MouseEventHandler> listeners;
 	
@@ -117,7 +137,7 @@ public abstract class Widget {
     }
 
     public boolean checkCollision(int x, int y){
-        if( x >= positionX && x <= positionX + width && y >= positionY && y <= positionY + height + Constants.OS_title_bar_height){
+        if( x >= positionX && x <= positionX + width && y >= positionY + Constants.OS_title_bar_height && y <= positionY + height + Constants.OS_title_bar_height){
             return true;
         }
 

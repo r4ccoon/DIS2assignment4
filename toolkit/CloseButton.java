@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author rohan
  */
-public class CloseButton extends Widget implements MouseEventHandler { 
+public class CloseButton extends Button  {
 
     protected List<CloseButtonHandler> closeListener;
     
@@ -27,72 +27,21 @@ public class CloseButton extends Widget implements MouseEventHandler {
 
 		closeListener = new LinkedList<CloseButtonHandler>();
         this.AddActionListeners(this);
+
+        this.setText("X");
+        this.setBackgroundColor(Color.RED);
+        this.setForegroundColor(Color.BLACK);
     }  
     
     public void AddCloseButtonListener(CloseButtonHandler listener){ 
     	closeListener.add(listener);
     }
 
-    @Override
-    protected void HandlePaint(Desktop ges){
-        ges.setColor(Color.RED) ;
-        ges.fillRect(this.positionX, this.positionY, this.positionX + this.width, this.positionY + this.height);
-        ges.setColor(Color.BLACK) ;
-        ges.drawString("X", this.positionX, this.positionY+ this.height);
-    }
-
-    @Override
-    public boolean checkCollision(int x, int y){
-       return super.checkCollision(x, y);
-    }
-    
-    public void OnWindowManagerOnMouseDrag() {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void OnWindowManagerOnMouseRelease() {
-        // TODO Auto-generated method stub
-
-    }
-
 	@Override
 	public void OnClick(Widget o, EventArgs e) {
-		System.out.println("onclose button");
+		System.out.println("on close button");
 		
 		for (CloseButtonHandler hl : closeListener)
             hl.OnClickCloseButton(this, e);
 	}
-
-	@Override
-	public void OnMousePressed(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void OnMouseReleased(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void OnMouseMoved(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void OnMouseDragged(Widget widget, EventArgs e) {
-		// TODO Auto-generated method stub
-		
-	}
- 
-	@Override
-	public void OnWindowDragged(int movementX, int movementY){
-		positionX -= movementX;
-		positionY -= movementY;
-	} 
-	
-	
 }
