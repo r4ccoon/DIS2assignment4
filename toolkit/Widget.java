@@ -185,8 +185,10 @@ public abstract class Widget {
         	for (MouseEventHandler hl : listeners){
                 // call callback
                 hl.OnMouseReleased(this, e);
-            }  
-        } 
+            }
+        }
+
+        isFocused = false;
 	}
 
 	public void handleMouseMoved(EventArgs e) {

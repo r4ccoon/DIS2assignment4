@@ -16,10 +16,11 @@ import java.util.Map;
  * create the label as well
  *
  */
-public class MainForm extends Widget implements ButtonEventHandler {
+public class MainForm extends Widget implements ButtonEventHandler, SliderEventHandler {
 
     LinkedHashMap<String, String> HelloLanguage = new LinkedHashMap<String, String>();
     Label hello ;
+    private Label sliderValue;
 
     public MainForm(int x, int y, int w, int h){
         InitLanguage();
@@ -44,12 +45,12 @@ public class MainForm extends Widget implements ButtonEventHandler {
         int i = 1;
         for ( Map.Entry<String, String> entry : HelloLanguage.entrySet() ) {
             String key = entry.getKey();
-            String value = entry.getValue();
 
+            // arrange position automaitcally
             Button b = new Button(200, 50 + (50 * i), 200, 20);
             b.setName(key);
             b.setText(key);
-            b.setBackgroundColor(Color.gray);
+            b.setBackgroundColor(Color.LIGHT_GRAY);
             b.setForegroundColor(Color.black);
             b.AddButtonEventListener(this);
 
@@ -57,7 +58,30 @@ public class MainForm extends Widget implements ButtonEventHandler {
 
             i++;
         }
+
+        CreateSlider();
 	}
+
+    public void CreateSlider(){
+        Slider slider = new Slider(100, 300, 300);
+        slider.AddSliderListener(this);
+
+        this.AddWidget(slider);
+
+        // labels for update values
+        Label sliderAcc1 =  new Label("sliderAcc1", "slider current value: " );
+        sliderAcc1.setPositionX(100);
+        sliderAcc1.setPositionY(330);
+
+        sliderValue =  new Label("sliderValue" );
+        sliderValue.setPositionX(100);
+        sliderValue.setPositionY(350);
+        Float f = 0.0f;
+        sliderValue.setText(f.toString());
+
+        this.AddWidget(sliderAcc1);
+        this.AddWidget(sliderValue);
+    }
 
     public void InitLanguage(){
         HelloLanguage.put( "English", "Good day");
@@ -73,5 +97,24 @@ public class MainForm extends Widget implements ButtonEventHandler {
     @Override
     public void OnClick(Button button, EventArgs e) {
         hello.setText( HelloLanguage.get(button.getName()) );
+    }
+
+    @Override
+    public void OnSliderFinishedMove(Slider slider, EventArgs e) {
+        Float val = (Float)slider.getValue();
+
+        System.out.println(val.toString());
+
+        sliderValue.setText(val.toString());
+    }
+
+    @Override
+    public void OnSliderStartDragged(Slider slider, EventArgs e) {
+
+    }
+
+    @Override
+    public void OnSliderDragged(Slider slider, EventArgs e) {
+
     }
 }

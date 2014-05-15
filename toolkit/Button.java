@@ -6,13 +6,10 @@ import java.util.List;
 public class Button extends Widget implements MouseEventHandler{
 
     protected List<ButtonEventHandler> buttonEventListeners = new LinkedList<ButtonEventHandler>();
+    Label label;
 
     public Button(){
         this.AddActionListeners(this);
-    }
-
-    public void AddButtonEventListener(ButtonEventHandler listener){
-        buttonEventListeners.add(listener);
     }
 
     public Button(int posX, int posY, int width, int height ) {
@@ -22,6 +19,10 @@ public class Button extends Widget implements MouseEventHandler{
         this.height = height;
 
         this.AddActionListeners(this);
+    }
+
+    public void AddButtonEventListener(ButtonEventHandler listener){
+        buttonEventListeners.add(listener);
     }
 
     @Override
@@ -39,6 +40,7 @@ public class Button extends Widget implements MouseEventHandler{
         ges.drawLine(positionX + 1 + width, positionY - 1, positionX + width + 1, positionY + height + 1);
         //draw bottom
         ges.drawLine(positionX, positionY + height + 1, positionX + width, positionY + height + 1);
+
         ges.drawString(this.getText(), this.positionX, this.positionY + this.height);
     }
 
