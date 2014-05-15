@@ -5,16 +5,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Slider extends Widget {
-    private final int handlerXMin;
-    private final int handlerXMax;
-    int minValue = 0;
-	int maxValue = 100;
-    Vector2 mouseMovement = new Vector2(positionX, positionY);
-    protected List<SliderEventHandler> sliderListeners = new LinkedList<SliderEventHandler>();
+    private int handlerXMin;
+    private int handlerXMax;
+    private int minValue = 0;
+    private int maxValue = 100;
+    private Vector2 mouseMovement = new Vector2(positionX, positionY);
     private int handlerX;
     private int handlerY;
     private int handlerWidth = 10;
     private int handlerHeight = 18;
+
+    protected List<SliderEventHandler> sliderListeners = new LinkedList<SliderEventHandler>();
 
     public Slider(int x, int y, int w){
         positionX = x;
@@ -123,5 +124,8 @@ public class Slider extends Widget {
 
         handlerX -= deltaX;
         handlerY -= deltaY;
+
+        handlerXMax -= deltaX;
+        handlerXMin -= deltaX;
     }
 }
