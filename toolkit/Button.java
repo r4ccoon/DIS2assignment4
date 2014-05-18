@@ -41,7 +41,7 @@ public class Button extends Widget implements MouseEventHandler{
         //draw bottom
         ges.drawLine(positionX, positionY + height + 1, positionX + width, positionY + height + 1);
 
-        ges.drawString(this.getText(), this.positionX, this.positionY + this.height);
+        ges.drawString(this.getText(), this.positionX  , this.positionY + this.height);
     }
 
     @Override

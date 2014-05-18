@@ -4,10 +4,13 @@ import toolkit.*;
 import toolkit.Button;
 import toolkit.Desktop;
 import toolkit.Label;
+import java.util.Random;
+
 
 import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 /**
  *
@@ -21,6 +24,7 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
     LinkedHashMap<String, String> HelloLanguage = new LinkedHashMap<String, String>();
     Label hello ;
     private Label sliderValue;
+
 
     public MainForm(int x, int y, int w, int h){
         InitLanguage();
@@ -105,11 +109,28 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
 
     @Override
     public void OnSliderFinishedMove(Slider slider, EventArgs e) {
+       
+        Random rand = new Random();
+        
+        float r = rand.nextFloat();
+        float g = rand.nextFloat();
+        float b = rand.nextFloat();
+        
+        Color randomColor = new Color(r, g, b);
+
+        //this.setBackgroundColor(randomColor);
+        System.out.println(randomColor);
+
+        
+        
         Float val = (Float)slider.getValue();
 
         System.out.println(val.toString());
 
         sliderValue.setText(val.toString());
+        sliderValue.setForegroundColor(randomColor);
+
+        
     }
 
     @Override
