@@ -7,8 +7,8 @@ import java.util.List;
 public class Slider extends Widget {
     private int handlerXMin;
     private int handlerXMax;
-    private int minValue = 0;
-    private int maxValue = 100;
+    private float minValue = 0f;
+    private float maxValue = 1f;
     private Vector2 mouseMovement = new Vector2(positionX, positionY);
     private int handlerX;
     private int handlerY;
@@ -103,8 +103,24 @@ public class Slider extends Widget {
             }
         }
     }
+     
+    public float getMinValue() {
+		return minValue;
+	}
 
-    @Override
+	public void setMinValue(float minValue) {
+		this.minValue = minValue;
+	}
+
+	public float getMaxValue() {
+		return maxValue;
+	}
+
+	public void setMaxValue(float maxValue) {
+		this.maxValue = maxValue;
+	}
+
+	@Override
     public void handleMouseReleased(EventArgs e) {
         if(isFocused)
         {

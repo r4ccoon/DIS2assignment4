@@ -1,15 +1,17 @@
 package helloworld;
 
-import toolkit.*;
-import toolkit.Button;
-import toolkit.Desktop;
-import toolkit.Label;
-import java.util.Random;
-
-
-import java.awt.*;
+import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import toolkit.Button;
+import toolkit.ButtonEventHandler;
+import toolkit.Desktop;
+import toolkit.EventArgs;
+import toolkit.Label;
+import toolkit.Slider;
+import toolkit.SliderEventHandler;
+import toolkit.Widget;
 
 
 /**
@@ -52,7 +54,7 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
         for ( Map.Entry<String, String> entry : HelloLanguage.entrySet() ) {
             String key = entry.getKey();
 
-            // arrange position automaitcally
+            // arrange position automatically
             Button b = new Button(200, 50 + (50 * i), 200, 20);
             b.setName(key);
             b.setText(key);
@@ -71,6 +73,8 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
     public void CreateSlider(){
         Slider slider = new Slider(100, 300, 300);
         slider.AddSliderListener(this);
+        slider.setMinValue(0f);
+        slider.setMaxValue(1f);
 
         this.AddWidget(slider);
 
@@ -79,13 +83,13 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
         sliderAcc1.setPositionX(100);
         sliderAcc1.setPositionY(330);
         sliderAcc1.setForegroundColor(Color.black);
-
+         
         sliderValue =  new Label("sliderValue" );
         sliderValue.setPositionX(100);
         sliderValue.setPositionY(350); 
         sliderValue.setForegroundColor(Color.black);
         Float f = 0.0f;
-        sliderValue.setText(f.toString());
+        sliderValue.setText(f.toString()); 
 
         this.AddWidget(sliderAcc1);
         this.AddWidget(sliderValue);
@@ -108,29 +112,17 @@ public class MainForm extends Widget implements ButtonEventHandler, SliderEventH
     }
 
     @Override
-    public void OnSliderFinishedMove(Slider slider, EventArgs e) {
-       
-        Random rand = new Random();
-        
-        float r = rand.nextFloat();
-        float g = rand.nextFloat();
-        float b = rand.nextFloat();
-        
-        Color randomColor = new Color(r, g, b);
+    public void OnSliderFinishedMove(Slider slider, EventArgs e) { 
+    	Float val = (Float)slider.getValue();
+    	
+        Float r = val;
+        Float g = val;
+        Float b = val;
 
-        //this.setBackgroundColor(randomColor);
-        System.out.println(randomColor);
-
+        Color c = new Color(r, g, b);
+        hello.setBackgroundColor(c); 
         
-        
-        Float val = (Float)slider.getValue();
-
-        System.out.println(val.toString());
-
-        sliderValue.setText(val.toString());
-        sliderValue.setForegroundColor(randomColor);
-
-        
+        sliderValue.setText(b.toString()); 
     }
 
     @Override
